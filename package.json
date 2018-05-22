@@ -1,0 +1,21 @@
+{
+    "name": "electron-wechat",
+    "version": "0.1.0",
+    "main": "src/main.js",
+    "scripts": {
+        "start": "electron src/main.js"
+    },
+    "repository": "https://github.com/eNkru/electron-wechat.git",
+    "keywords": [
+        "Electron",
+        "Wechat",
+        "微信",
+        "微信客户端",
+        "微信桌面"
+    ],
+    "author": "Howard Ju <howard.ju@outlook.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "electron": "^2.0.1"
+    }
+}
