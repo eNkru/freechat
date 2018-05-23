@@ -81,7 +81,7 @@ class MainController {
                 let unreadImportant = document.querySelector('.icon.web_wechat_reddot_middle');
                 let unreadType = unreadImportant ? 'important' : unread ? 'minor' : 'none';
                 require('electron').ipcRenderer.send('updateUnread', unreadType);
-            }, 5000);
+            }, 2000);
         `)
     }
 }
