@@ -17,7 +17,18 @@ CssInjector.login = `
 `
 
 CssInjector.main = `
+    .main {
+        padding: 0 !important;
+        height: 100% !important;
+    }
 
+    .main_inner {
+        max-width: 100% !important;
+    }
+
+    a.web_wechat_screencut {
+        display: none;
+    }
 `
 
 module.exports = CssInjector

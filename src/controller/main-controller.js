@@ -23,6 +23,7 @@ class MainController {
 
         this.window.webContents.on('dom-ready', () => {
             this.window.webContents.insertCSS(CssInjector.login)
+            this.window.webContents.insertCSS(CssInjector.main)            
             this.show()
         })
 
@@ -56,13 +57,16 @@ class MainController {
     }
 
     handleRequest(details) {
-        console.log(details.url)
+        // console.log(details.url)
         details.url.startsWith('https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxinit') && this.login()
         details.url.startsWith('https://wx.qq.com/?&lang') && this.logout()
     }
 
     login() {
+        this.window.hide()
         this.window.setSize(1000, 670, true)
+        this.window.setResizable(true)
+        this.window.show()
     }
 
     logout() {
