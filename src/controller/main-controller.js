@@ -19,11 +19,12 @@ class MainController {
             resizable: false
         })
 
-        this.window.loadURL('https://wx.qq.com/')
+        this.window.loadURL('https://wx.qq.com/?lang=zh_CN')
 
         this.window.webContents.on('dom-ready', () => {
             this.window.webContents.insertCSS(CssInjector.login)
-            this.window.webContents.insertCSS(CssInjector.main)            
+            this.window.webContents.insertCSS(CssInjector.main)
+            this.addUnreadMessageListener()    
             this.show()
         })
 
@@ -71,6 +72,17 @@ class MainController {
 
     logout() {
         this.window.setSize(380, 500, true)
+    }
+
+    addUnreadMessageListener() {
+        this.window.webContents.executeJavaScript(`
+            setInterval(() => {
+                let unread = document.querySelector('.icon.web_wechat_reddot');
+                let unreadImportant = document.querySelector('.icon.web_wechat_reddot_middle');
+                let unreadType = unreadImportant ? 'important' : unread ? 'minor' : 'none';
+                require('electron').ipcRenderer.send('updateUnread', unreadType);
+            }, 5000);
+        `)
     }
 }
 
