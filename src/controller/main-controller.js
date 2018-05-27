@@ -50,7 +50,7 @@ class MainController {
     }
 
     toggle() {
-        if (this.window.isVisible()) {
+        if (this.window.isFocused()) {
             this.window.hide()
         } else {
             this.show()
