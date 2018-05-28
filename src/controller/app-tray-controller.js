@@ -11,6 +11,7 @@ class AppTrayController {
     constructor(mainController) {
         this.mainController = mainController
         this.unreadType = 'none'
+        this.platform = require('os').platform()
         this.init()
     }
 
@@ -37,18 +38,31 @@ class AppTrayController {
     }
 
     createTrayIcon() {
-        return nativeImage.createFromPath(path.join(__dirname, '../../assets/icon_tray.png'))
+        switch (this.platform) {
+            case 'darwin':
+                return nativeImage.createFromPath(path.join(__dirname, '../../assets/icon.png')).setTemplateImage(true)
+            case 'win32':
+                return nativeImage.createFromPath(path.join(__dirname, '../../assets/iconTemplate@2x.png'))
+            default:
+                return nativeImage.createFromPath(path.join(__dirname, '../../assets/iconTemplate@2x.png'))
+        }
     }
 
     getUnreadImage(value) {
         this.unreadType = value
         switch (value) {
             case 'important':
-                return nativeImage.createFromPath(path.join(__dirname, '../../assets/icon_tray_important.png'))
+                return 'darwin' === this.platform ?
+                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportant.png')).setTemplateImage(true) :
+                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportantTemplate@2x.png'))
             case 'minor':
-                return nativeImage.createFromPath(path.join(__dirname, '../../assets/icon_tray_unread.png'))
+                return 'darwin' === this.platform ?
+                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnread.png')).setTemplateImage(true) :
+                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnreadTemplate@2x.png'))
             default:
-                return nativeImage.createFromPath(path.join(__dirname, '../../assets/icon_tray.png'))
+                return 'darwin' === this.platform ?
+                    nativeImage.createFromPath(path.join(__dirname, '../../assets/icon.png')).setTemplateImage(true) :
+                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconTemplate@2x.png'))
         }
     }
 
