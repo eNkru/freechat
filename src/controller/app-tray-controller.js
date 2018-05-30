@@ -40,7 +40,9 @@ class AppTrayController {
     createTrayIcon() {
         switch (this.platform) {
             case 'darwin':
-                return nativeImage.createFromPath(path.join(__dirname, '../../assets/icon.png'))
+                let trayIcon = nativeImage.createFromPath(path.join(__dirname, '../../assets/icon.png'))
+                trayIcon.setTemplateImage(true)
+                return trayIcon
             case 'win32':
                 return nativeImage.createFromPath(path.join(__dirname, '../../assets/icon@2x.png'))
             default:
@@ -50,20 +52,24 @@ class AppTrayController {
 
     getUnreadImage(value) {
         this.unreadType = value
+        let trayIcon
         switch (value) {
             case 'important':
-                return 'darwin' === this.platform ?
+                trayIcon = 'darwin' === this.platform ?
                     nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportant.png')) :
                     nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportant@2x.png'))
             case 'minor':
-                return 'darwin' === this.platform ?
+                trayIcon = 'darwin' === this.platform ?
                     nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnread.png')) :
                     nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnread@2x.png'))
             default:
-                return 'darwin' === this.platform ?
+            trayIcon = 'darwin' === this.platform ?
                     nativeImage.createFromPath(path.join(__dirname, '../../assets/icon.png')) :
                     nativeImage.createFromPath(path.join(__dirname, '../../assets/icon@2x.png'))
         }
+
+        trayIcon.setTemplateImage(true)
+        return trayIcon
     }
 
     cleanupAndExit() {
