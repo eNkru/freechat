@@ -40,11 +40,11 @@ class AppTrayController {
     createTrayIcon() {
         switch (this.platform) {
             case 'darwin':
-                return nativeImage.createFromPath(path.join(__dirname, '../../assets/icon.png')).setTemplateImage(true)
+                return nativeImage.createFromPath(path.join(__dirname, '../../assets/icon.png'))
             case 'win32':
-                return nativeImage.createFromPath(path.join(__dirname, '../../assets/iconTemplate@2x.png'))
+                return nativeImage.createFromPath(path.join(__dirname, '../../assets/icon@2x.png'))
             default:
-                return nativeImage.createFromPath(path.join(__dirname, '../../assets/iconTemplate@2x.png'))
+                return nativeImage.createFromPath(path.join(__dirname, '../../assets/icon@2x.png'))
         }
     }
 
@@ -53,16 +53,16 @@ class AppTrayController {
         switch (value) {
             case 'important':
                 return 'darwin' === this.platform ?
-                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportant.png')).setTemplateImage(true) :
-                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportantTemplate@2x.png'))
+                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportant.png')) :
+                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportant@2x.png'))
             case 'minor':
                 return 'darwin' === this.platform ?
-                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnread.png')).setTemplateImage(true) :
-                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnreadTemplate@2x.png'))
+                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnread.png')) :
+                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnread@2x.png'))
             default:
                 return 'darwin' === this.platform ?
-                    nativeImage.createFromPath(path.join(__dirname, '../../assets/icon.png')).setTemplateImage(true) :
-                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconTemplate@2x.png'))
+                    nativeImage.createFromPath(path.join(__dirname, '../../assets/icon.png')) :
+                    nativeImage.createFromPath(path.join(__dirname, '../../assets/icon@2x.png'))
         }
     }
 
