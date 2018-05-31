@@ -1,6 +1,8 @@
 {
   "name": "electron-wechat",
+  "productName": "Wechat",
   "version": "0.1.0",
+  "description": "Wechat desktop application",
   "main": "src/main.js",
   "scripts": {
     "start": "electron src/main.js",
