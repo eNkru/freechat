@@ -2,6 +2,10 @@
 致力于打造macOS和Linux桌面下最好用的微信（wechat）客户端。
 使用[Electron](https://electron.atom.io)构建。
 
+![wechat_full_contact](https://user-images.githubusercontent.com/13460738/40812895-4c014eba-658c-11e8-95cc-4880519159b2.png)
+
+![wechat_mini_contact](https://user-images.githubusercontent.com/13460738/40812898-4e72c412-658c-11e8-8327-616170035627.png)
+
 *请注意：这个项目不是虾米音乐的官方客户端。如果有任何问题请反馈到[这个链接](https://github.com/eNkru/electron-wechat/issues)。*
 
 ## 功能
