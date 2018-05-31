@@ -1,6 +1,7 @@
 const {
     BrowserWindow,
-    session
+    session,
+    shell
 } = require('electron');
 const CssInjector = require('../js/css-injector');
 
@@ -39,7 +40,9 @@ class MainController {
                 e.preventDefault()
                 this.window.hide()
             }
-        });
+        })
+
+        this.window.webContents.on('new-window', this.openInBrowser)
 
         session.defaultSession.webRequest.onCompleted({urls: [
             'https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxinit*',
@@ -60,6 +63,11 @@ class MainController {
         } else {
             this.show()
         }
+    }
+
+    openInBrowser(e, url) {
+        e.preventDefault()
+        shell.openExternal(url)
     }
 
     handleRequest(details) {
