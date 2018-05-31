@@ -24,7 +24,12 @@ class MainController {
         this.window.webContents.on('dom-ready', () => {
             this.window.webContents.insertCSS(CssInjector.login)
             this.window.webContents.insertCSS(CssInjector.main)
-            this.addUnreadMessageListener()    
+
+            this.addFontAwesomeCDN()
+            this.addToggleContactElement()
+
+            this.addUnreadMessageListener()
+
             this.show()
         })
 
@@ -74,6 +79,18 @@ class MainController {
         this.window.setSize(380, 500, true)
     }
 
+    addFontAwesomeCDN() {
+        this.window.webContents.executeJavaScript(`
+            let faLink = document.createElement('link');
+            faLink.setAttribute('rel', 'stylesheet');
+            faLink.type = 'text/css';
+            faLink.href = 'https://use.fontawesome.com/releases/v5.0.13/css/all.css';
+            faLink.integrity = 'sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp';
+            faLink.crossOrigin = 'anonymous';
+            document.head.appendChild(faLink);
+        `)
+    }
+
     addUnreadMessageListener() {
         this.window.webContents.executeJavaScript(`
             setInterval(() => {
@@ -83,6 +100,19 @@ class MainController {
                 require('electron').ipcRenderer.send('updateUnread', unreadType);
             }, 2000);
         `)
+    }
+
+    addToggleContactElement() {
+        this.window.webContents.executeJavaScript(`
+            let toggleButton = document.createElement('i');
+            toggleButton.className = 'toggle_contact_button fas fa-angle-double-left';
+            toggleButton.onclick = () => {
+                toggleButton.classList.toggle('mini');
+                document.querySelector('.panel').classList.toggle('mini');
+            };
+            let titleBar = document.querySelector('.header');
+            titleBar.appendChild(toggleButton);
+        `)   
     }
 }
 
