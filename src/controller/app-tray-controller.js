@@ -19,9 +19,14 @@ class AppTrayController {
         this.tray = new Tray(this.createTrayIcon())
         this.tray.setToolTip('Wechat Desktop')
 
-        const context = Menu.buildFromTemplate([
-            {label: '切换聊天窗口', click: () => this.mainController.toggle()},
-            {label: '退出', click: () => this.cleanupAndExit()}
+        const context = Menu.buildFromTemplate([{
+                label: '切换聊天窗口',
+                click: () => this.mainController.toggle()
+            },
+            {
+                label: '退出',
+                click: () => this.cleanupAndExit()
+            }
         ])
 
         this.tray.setContextMenu(context)
@@ -52,24 +57,32 @@ class AppTrayController {
 
     getUnreadImage(value) {
         this.unreadType = value
-        let trayIcon
         switch (value) {
             case 'important':
-                trayIcon = 'darwin' === this.platform ?
-                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportant.png')) :
-                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportant@2x.png'))
+                if ('darwin' === this.platform) {
+                    let trayIcon = nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportant.png'))
+                    trayIcon.setTemplateImage(true)
+                    return trayIcon
+                } else {
+                    return nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportant@2x.png'))
+                }
             case 'minor':
-                trayIcon = 'darwin' === this.platform ?
-                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnread.png')) :
-                    nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnread@2x.png'))
+                if ('darwin' === this.platform) {
+                    let trayIcon = nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnread.png'))
+                    trayIcon.setTemplateImage(true)
+                    return trayIcon
+                } else {
+                    return nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnread@2x.png'))
+                }
             default:
-            trayIcon = 'darwin' === this.platform ?
-                    nativeImage.createFromPath(path.join(__dirname, '../../assets/icon.png')) :
-                    nativeImage.createFromPath(path.join(__dirname, '../../assets/icon@2x.png'))
+                if ('darwin' === this.platform) {
+                    let trayIcon = nativeImage.createFromPath(path.join(__dirname, '../../assets/icon.png'))
+                    trayIcon.setTemplateImage(true)
+                    return trayIcon
+                } else {
+                    return nativeImage.createFromPath(path.join(__dirname, '../../assets/icon@2x.png'))
+                }
         }
-
-        trayIcon.setTemplateImage(true)
-        return trayIcon
     }
 
     cleanupAndExit() {
