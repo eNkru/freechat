@@ -19,10 +19,10 @@ class AppTrayController {
         this.tray = new Tray(this.createTrayIcon())
         this.tray.setToolTip('Wechat Desktop')
 
-        const context = Menu.buildFromTemplate([{
-            label: '退出',
-            click: () => this.cleanupAndExit()
-        }])
+        const context = Menu.buildFromTemplate([
+            {label: '切换聊天窗口', click: () => this.mainController.toggle()},
+            {label: '退出', click: () => this.cleanupAndExit()}
+        ])
 
         this.tray.setContextMenu(context)
 
