@@ -113,12 +113,12 @@ class MainController {
 
     addUnreadMessageListener() {
         this.window.webContents.executeJavaScript(`
-            setInterval(() => {
+            new MutationObserver(mutations => {
                 let unread = document.querySelector('.icon.web_wechat_reddot');
                 let unreadImportant = document.querySelector('.icon.web_wechat_reddot_middle');
                 let unreadType = unreadImportant ? 'important' : unread ? 'minor' : 'none';
                 require('electron').ipcRenderer.send('updateUnread', unreadType);
-            }, 2000);
+            }).observe(document.querySelector('.chat_list'), {subtree: true, childList: true});
         `)
     }
 
