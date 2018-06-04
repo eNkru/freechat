@@ -61,7 +61,7 @@ class AppTrayController {
             case 'important':
                 if ('darwin' === this.platform) {
                     let trayIcon = nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportant.png'))
-                    trayIcon.setTemplateImage(true)
+                    // trayIcon.setTemplateImage(true)
                     return trayIcon
                 } else {
                     return nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportant@2x.png'))
@@ -69,7 +69,7 @@ class AppTrayController {
             case 'minor':
                 if ('darwin' === this.platform) {
                     let trayIcon = nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnread.png'))
-                    trayIcon.setTemplateImage(true)
+                    // trayIcon.setTemplateImage(true)
                     return trayIcon
                 } else {
                     return nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnread@2x.png'))
