@@ -47,8 +47,10 @@ class MainController {
 
         session.defaultSession.webRequest.onCompleted({urls: [
             'https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxinit*',
-            'https://wx.qq.com/?&lang*']
-            },
+            'https://wx2.qq.com/cgi-bin/mmwebwx-bin/webwxinit*',
+            'https://wx.qq.com/?&lang*',
+            'https://wx2.qq.com/?&lang*'
+        ]},
             (details) => this.handleRequest(details)
         )
     }
@@ -74,7 +76,9 @@ class MainController {
     handleRequest(details) {
         // console.log(details.url)
         details.url.startsWith('https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxinit') && this.login()
+        details.url.startsWith('https://wx2.qq.com/cgi-bin/mmwebwx-bin/webwxinit') && this.login()
         details.url.startsWith('https://wx.qq.com/?&lang') && this.logout()
+        details.url.startsWith('https://wx2.qq.com/?&lang') && this.logout()
     }
 
     login() {
