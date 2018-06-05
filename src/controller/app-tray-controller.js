@@ -48,10 +48,8 @@ class AppTrayController {
                 let trayIcon = nativeImage.createFromPath(path.join(__dirname, '../../assets/icon.png'))
                 trayIcon.setTemplateImage(true)
                 return trayIcon
-            case 'win32':
-                return nativeImage.createFromPath(path.join(__dirname, '../../assets/icon@2x.png'))
             default:
-                return nativeImage.createFromPath(path.join(__dirname, '../../assets/icon@2x.png'))
+                return nativeImage.createFromPath(path.join(__dirname, '../../assets/original/icon_tray.png'))
         }
     }
 
@@ -61,18 +59,16 @@ class AppTrayController {
             case 'important':
                 if ('darwin' === this.platform) {
                     let trayIcon = nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportant.png'))
-                    // trayIcon.setTemplateImage(true)
                     return trayIcon
                 } else {
-                    return nativeImage.createFromPath(path.join(__dirname, '../../assets/iconImportant@2x.png'))
+                    return nativeImage.createFromPath(path.join(__dirname, '../../assets/original/icon_tray_important.png'))
                 }
             case 'minor':
                 if ('darwin' === this.platform) {
                     let trayIcon = nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnread.png'))
-                    // trayIcon.setTemplateImage(true)
                     return trayIcon
                 } else {
-                    return nativeImage.createFromPath(path.join(__dirname, '../../assets/iconUnread@2x.png'))
+                    return nativeImage.createFromPath(path.join(__dirname, '../../assets/original/icon_tray_unread.png'))
                 }
             default:
                 if ('darwin' === this.platform) {
@@ -80,7 +76,7 @@ class AppTrayController {
                     trayIcon.setTemplateImage(true)
                     return trayIcon
                 } else {
-                    return nativeImage.createFromPath(path.join(__dirname, '../../assets/icon@2x.png'))
+                    return nativeImage.createFromPath(path.join(__dirname, '../../assets/original/icon_tray.png'))
                 }
         }
     }
