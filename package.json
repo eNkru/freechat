@@ -1,6 +1,6 @@
 {
   "name": "electron-wechat",
-  "productName": "Wechat",
+  "productName": "Freechat",
   "version": "0.1.1",
   "description": "Wechat desktop application",
   "main": "src/main.js",
