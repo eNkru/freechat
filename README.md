@@ -16,7 +16,7 @@ Mini联系人模式
 
 ![wechat_important_tray](https://user-images.githubusercontent.com/13460738/40816468-478d812c-65a1-11e8-8116-601e78c61c69.png)
 
-*请注意：这个项目不是虾米音乐的官方客户端。如果有任何问题请反馈到[这个链接](https://github.com/eNkru/electron-wechat/issues)。*
+*请注意：这个项目不是微信的官方客户端。如果有任何问题请反馈到[这个链接](https://github.com/eNkru/electron-wechat/issues)。*
 
 ## 功能
 * 微信聊天桌面版
