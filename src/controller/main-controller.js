@@ -71,7 +71,13 @@ class MainController {
 
     openInBrowser(e, url) {
         e.preventDefault()
-        shell.openExternal(url)
+        // if the url start with a wechat redirect url, get the real url, decode and open in external browser
+        let redirectUrl = url
+        if (url.startsWith('https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxcheckurl?requrl=')) {
+            const redirectRegexp = /https:\/\/wx\.qq\.com\/cgi-bin\/mmwebwx-bin\/webwxcheckurl\?requrl=(.*)&skey.*/g
+            redirectUrl = decodeURIComponent(redirectRegexp.exec(url)[1])
+        }
+        shell.openExternal(redirectUrl)
     }
 
     handleRequest(details) {
