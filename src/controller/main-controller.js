@@ -17,7 +17,8 @@ class MainController {
             height: 500,
             frame: true,
             autoHideMenuBar: true,
-            resizable: false
+            resizable: false,
+            webPreferences: { webSecurity: false }
         })
 
         this.window.loadURL('https://wx.qq.com/?lang=zh_CN')
