@@ -30,6 +30,9 @@
     "appId": "nz.co.enkru.${name}",
     "linux": {
       "category": "Network;Utility",
+      "desktop": {
+	      "StartupWMClass": "freechat"
+	    },
       "target": [
         "AppImage",
         "deb"
