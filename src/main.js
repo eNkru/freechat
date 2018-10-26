@@ -12,38 +12,16 @@ class ElectronWechat {
 
   // init method, the entry point of the app.
   init() {
-    if (this.isRunning()) {
+    const lock = app.requestSingleInstanceLock()
+    if (!lock) {
       app.quit()
     } else {
+      app.on('second-instance', (event, commandLine, workingDirectory) => {
+        if (this.mainController) this.mainController.show()
+      })
+
       this.initApp()
     }
-  }
-
-  // check if the app is already running. return true if already launched,
-  // otherwise return false.
-  isRunning() {
-    return app.makeSingleInstance(() => {
-      if (this.mainController)
-        this.mainController.show()
-    });
-  }
-
-  // init method, the entry point of the app.
-  init() {
-    if (this.isRunning()) {
-      app.quit()
-    } else {
-      this.initApp()
-    }
-  }
-
-  // check if the app is already running. return true if already launched,
-  // otherwise return false.
-  isRunning() {
-    return app.makeSingleInstance(() => {
-      if (this.mainController)
-        this.mainController.show()
-    })
   }
 
   // init the main app.
