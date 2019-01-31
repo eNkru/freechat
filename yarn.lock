@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/7zip-bin/-/7zip-bin-4.0.2.tgz#6abbdc22f33cab742053777a26db2e25ca527179"
   integrity sha512-XtGk+IF57pr852UK1AhQJXqmm1WmSgS5uISL+LPs0z/iAxXouMvdlLJrHPeukP6gd7yR2rDTMSMkHNODgwIq7A==
 
-"@types/node@^8.0.24":
-  version "8.10.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.18.tgz#eb9ad8b0723d13fa9bc8b42543e3661ed805f2bb"
-  integrity sha512-WoepSz+wJlU5Bjq5oK6cO1oXe2FgPcjMtQPgKPS8fVaTAD0lxkScMCCbMimdkVCsykqaA4lvHWz3cmj28yimhA==
+"@types/node@^10.12.18":
+  version "10.12.20"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.20.tgz#f79f959acd3422d0889bd1ead1664bd2d17cd367"
+  integrity sha512-9spv6SklidqxevvZyOUGjZVz4QRXGu2dNaLyXIFzFYZW0AGDykzPRIUFJXTlQXyfzAucddwTcGtJNim8zqSOPA==
 
 ajv-keywords@^3.2.0:
   version "3.2.0"
@@ -578,11 +578,11 @@ electron-publish@20.28.3:
     mime "^2.3.1"
 
 electron@^4.0.0:
-  version "4.0.0-nightly.20181010"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-4.0.0-nightly.20181010.tgz#205bf4b367bc59d4ce1d14a587bd2a95267c4848"
-  integrity sha512-eOB6FPM/nSMCVZmF0BwVSyV1vD+VWJ0Ze8L5NjZieABywMCCrJeQM0cz7KLjKDbxUklV2XEmVH8oNPYwU98k+w==
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-4.0.3.tgz#0d45a4bcfb63b3e39daf44aeb599b89e95d2a055"
+  integrity sha512-wOBYnlv3Xgbwh9DAHBktP3sQcbCBuXMQi1NzPH3EMnbdYNqj+FnTzVLq0RYp0uSzdjR3fhAZ/E6wFSMLaAc5iw==
   dependencies:
-    "@types/node" "^8.0.24"
+    "@types/node" "^10.12.18"
     electron-download "^4.1.0"
     extract-zip "^1.0.3"
 

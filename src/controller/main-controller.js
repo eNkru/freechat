@@ -3,6 +3,7 @@ const {
     session,
     shell
 } = require('electron');
+const path = require('path');
 const CssInjector = require('../js/css-injector');
 
 class MainController {
@@ -18,6 +19,7 @@ class MainController {
             frame: true,
             autoHideMenuBar: true,
             resizable: false,
+            icon: path.join(__dirname, '../../build/icons/512x512.png'),
             webPreferences: { webSecurity: false }
         })
 
