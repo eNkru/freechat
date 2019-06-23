@@ -23,16 +23,16 @@
   "author": "Howard Ju <howard.ju@outlook.com>",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^4.0.0",
-    "electron-builder": "^20.14.7"
+    "electron": "^5.0.4",
+    "electron-builder": "^20.44.4"
   },
   "build": {
     "appId": "nz.co.enkru.${name}",
     "linux": {
       "category": "Network;Utility",
       "desktop": {
-	      "StartupWMClass": "freechat"
-	    },
+        "StartupWMClass": "freechat"
+      },
       "target": [
         "AppImage",
         "deb"
