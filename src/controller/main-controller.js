@@ -1,4 +1,5 @@
 const {
+    app,
     BrowserWindow,
     session,
     shell
@@ -30,7 +31,7 @@ class MainController {
             this.window.webContents.insertCSS(CssInjector.main)
 
             this.addFontAwesomeCDN()
-            // this.changeTitle()
+            this.changeTitle()
             this.addToggleContactElement()
 
             this.addUnreadMessageListener()
@@ -113,16 +114,17 @@ class MainController {
         `)
     }
 
-    // changeTitle() {
-    //     this.window.webContents.executeJavaScript(`
-    //         document.title = '微信，是一个生活方式';
-    //         new MutationObserver(mutations => {
-    //             if (document.title !== '微信，是一个生活方式') {
-    //                 document.title = '微信，是一个生活方式';
-    //             }
-    //         }).observe(document.querySelector('title'), {childList: true});
-    //     `)
-    // }
+    changeTitle() {
+        this.window.webContents.executeJavaScript(`
+            var titleName = 'Freechat (version: ${app.getVersion()})';
+            document.title = titleName;
+            new MutationObserver(mutations => {
+                if (document.title !== titleName) {
+                    document.title = titleName;
+                }
+            }).observe(document.querySelector('title'), {childList: true});
+        `)
+    }
 
     addUnreadMessageListener() {
         this.window.webContents.executeJavaScript(`
