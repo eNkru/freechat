@@ -83,7 +83,6 @@ class AppTrayController {
 
     cleanupAndExit() {
         app.exit(0);
-
     }
 }
 

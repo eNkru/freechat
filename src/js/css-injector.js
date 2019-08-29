@@ -34,7 +34,7 @@ CssInjector.main = `
         width: 130px !important;
     }
 
-    i.toggle_contact_button {
+    i.toggle-mobile-button {
         display: table-cell;
         padding: 12px 0 0 12px;
         cursor: pointer;
@@ -42,37 +42,40 @@ CssInjector.main = `
         transition: 0.5s ease-out;
     }
 
-    i.toggle_contact_button.mini {
+    i.toggle-mobile-button.mini {
         margin: 12px 12px 0 0;
         display: block;
-        transform: rotateZ(540deg);
     }
 
     .panel {
         transition: width .2s;
     }
 
-    .panel.mini {
+    .mini .panel {
         width: 80px;
     }
 
-    .panel.mini .nickname {
+    .mini #chatArea {
+        width: calc(100vw - 80px);
+    }
+
+    .mini .panel .nickname {
         display: none;
     }
 
-    .panel.mini .search_bar {
+    .mini .panel .search_bar {
         display: none;
     }
 
-    .panel.mini .tab {
+    .mini .panel .tab {
         display: none;
     }
 
-    .panel.mini .nav_view {
+    .mini .panel .nav_view {
         top: 100px;
     }
 
-    .panel.mini .ext {
+    .mini .panel .ext {
         display: none;
     }
 `

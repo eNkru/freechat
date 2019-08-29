@@ -2,7 +2,8 @@ const {
     app,
     BrowserWindow,
     session,
-    shell
+    shell,
+    ipcMain
 } = require('electron');
 const path = require('path');
 const CssInjector = require('../js/css-injector');
@@ -21,7 +22,10 @@ class MainController {
             autoHideMenuBar: true,
             resizable: true,
             icon: path.join(__dirname, '../../build/icons/512x512.png'),
-            webPreferences: { webSecurity: false }
+            webPreferences: { 
+                webSecurity: false,
+                nodeIntegration: true,
+            }
         })
 
         this.window.loadURL('https://wx.qq.com/?lang=zh_CN')
@@ -57,6 +61,14 @@ class MainController {
         ]},
             (details) => this.handleRequest(details)
         )
+
+        ipcMain.on('resizeWindow', (event, value) => {
+            if (value === 'desktop') {
+                this.window.setSize(1000, this.window.getSize()[1], true)
+            } else {
+                this.window.setSize(450, this.window.getSize()[1], true)
+            }
+        })
     }
 
     show() {
@@ -93,7 +105,7 @@ class MainController {
 
     login() {
         this.window.hide()
-        this.window.setSize(1000, 670, true)
+        this.window.setSize(1000, 800, true)
         this.window.setResizable(true)
         this.window.show()
     }
@@ -140,10 +152,17 @@ class MainController {
     addToggleContactElement() {
         this.window.webContents.executeJavaScript(`
             let toggleButton = document.createElement('i');
-            toggleButton.className = 'toggle_contact_button fas fa-angle-double-left';
+            toggleButton.className = 'toggle-mobile-button fas fa-mobile-alt';
             toggleButton.onclick = () => {
-                toggleButton.classList.toggle('mini');
-                document.querySelector('.panel').classList.toggle('mini');
+                if (toggleButton.classList.contains('mini')) {
+                    toggleButton.className = 'toggle-mobile-button fas fa-mobile-alt';
+                    require('electron').ipcRenderer.send('resizeWindow', 'desktop');
+                } else {
+                    toggleButton.className = 'toggle-mobile-button fas fa-desktop mini';
+                    require('electron').ipcRenderer.send('resizeWindow', 'mobile');
+                }
+
+                document.querySelector('div.main').classList.toggle('mini');
             };
             let titleBar = document.querySelector('.header');
             titleBar.appendChild(toggleButton);
