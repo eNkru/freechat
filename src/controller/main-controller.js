@@ -46,6 +46,7 @@ class MainController {
             webPreferences: {
                 webSecurity: false,
                 nodeIntegration: true,
+                contextIsolation:false
             }
         })
 
@@ -54,13 +55,10 @@ class MainController {
         this.window.webContents.on('dom-ready', () => {
             this.window.webContents.insertCSS(CssInjector.login)
             this.window.webContents.insertCSS(CssInjector.main)
-
             this.addFontAwesomeCDN()
             this.changeTitle()
             this.addToggleContactElement()
-
             this.addUnreadMessageListener()
-
             this.show()
         })
 
@@ -98,7 +96,7 @@ class MainController {
     }
 
     toggle() {
-        if (this.window.isFocused()) {
+        if (this.window.isVisible()) {
             this.window.hide()
         } else {
             this.show()
