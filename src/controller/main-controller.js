@@ -13,6 +13,13 @@ const UOS_patch = true
 // https://github.com/BlueSky-07/wechat-token/issues/1
 const UOS_secret = 'Gp8ICJkIEpkICggwMDAwMDAwMRAGGoAIP2dyZlmKevRGDZKoJMMXqdPRe1Iv+vL/2Kj8M/Fx/NMXVTdgTfDVuS5QjUjfXzzkMkxWm0Z1kfL7obGFtXzmgUIKp4RUJn6ehaLuPe4Ne4Gjom4/mifCGjNNtrgO20s4We3jo3FAqhcblYdW4vOTPytXB9HTHScBev1aPT66nS8JfneWgE07oCqB6WrgotoXYFKAJX9iIJbMQFUI8JrnJi3kGqpMjunQSb/npt+TEkgFo7hof7tKhHZHLGm2qyL6d8CweDwprnYWhzey9act6YJydLRlAjXaN35dm/6j8OvEct+H65lwT0hyPN28/Q2GkNcaxvB2NhaM80k3Jck7UHtCq2GLnTEMAV80sKSqTl/EWHNQ1G7APuCRXUvD8JOrmSpRARlUmWEWHeXeeZ0a8Qx+BPkyLxvn1RNtWvnI5hknPSMQ5CUaaBHKSaOwtxuB4fpZXJV2wCah0ACLU+7LFZ5bz1LdEkktzGRyC8GkL8MZwk25dgIiHOVSWgfLBRc4mkG4FMBsmJoCsKxG528Yt8fO0kLGb0pbkWZ2xhjfdveGd3UKwkLypOZ5POpZxbNqlYAQay15Zt0/i4oZnOSWZpCY2H8TtspWpHkVfjR2OpViOgSQGU0gHCQZLQf6hw9w8icKg64zhG82NqUm5/DLIBTq4+Q1MAdSoUmdzNfh+gu8te/ouxTwHF7+83cvXvuWyvONLNdTtOmswIcTwANlFIGCxrv+GKA7FbVapvamJ2c3XCg56xWuUnhaxX9SFFVPeVFLkxHH7pmLvyuWjmTDsVhbPUrHTBN+39tdE1MrpmoQlM+zDcV7G4my39n/8omfCr7UNeqE+nAgTyI31O6QlD/onR4QY5le4lYRWllmprj8O9jNnMWDnufG/2SYzaitCOUa/YL/sI0L0a+HFqNWD8FPApNGBw2bQu0JDyi0Ks4IDf0s9xIVSg4MC70Kpxmb01VnJbihU1IligbnO6roqY0ErBFW8bMCJoOWcaAu35kHVp1y8SMIsp815tkNwvdipWO9qAQch6CbQMFle0REj2FI7cpG0fjlr8jO6FFh8e5P4EpBTq9uHnPy1SrlCL0zdf0DPKddUErATZlEjz+64oDbwqfPYb7ECE2me+Pq+gNH2whFDGkdfsdMHJPP2uHFHZEceIfe7QHkkbMW2h4zTojWJFVPqHCPcUYgsnfY9GuGVoR5MG9cvRt8wa1r0MVXbR/Iz/pKL/qKz4IHNPKvjhegI57VHbAomXk9pAaIPx2M/ZfJC3ZSrskfHwp7P/jybzZbjn9XLDPNp1Vi/ANhT65z67lCtzXG/WW9eXG2RZFwlUdijzDL3uCbBOFWLy28FHJcLHEa37sKVX/nYnpcNiDepZiCBigFMAA='
 
+const webUrls = ["https://wx.qq.com/*", "https://web.wechat.com/*", "https://wx2.qq.com/*", "https://wx8.qq.com/*"]
+const wechatHeaders = {
+    extspam:
+        "Go8FCIkFEokFCggwMDAwMDAwMRAGGvAESySibk50w5Wb3uTl2c2h64jVVrV7gNs06GFlWplHQbY/5FfiO++1yH4ykCyNPWKXmco+wfQzK5R98D3so7rJ5LmGFvBLjGceleySrc3SOf2Pc1gVehzJgODeS0lDL3/I/0S2SSE98YgKleq6Uqx6ndTy9yaL9qFxJL7eiA/R3SEfTaW1SBoSITIu+EEkXff+Pv8NHOk7N57rcGk1w0ZzRrQDkXTOXFN2iHYIzAAZPIOY45Lsh+A4slpgnDiaOvRtlQYCt97nmPLuTipOJ8Qc5pM7ZsOsAPPrCQL7nK0I7aPrFDF0q4ziUUKettzW8MrAaiVfmbD1/VkmLNVqqZVvBCtRblXb5FHmtS8FxnqCzYP4WFvz3T0TcrOqwLX1M/DQvcHaGGw0B0y4bZMs7lVScGBFxMj3vbFi2SRKbKhaitxHfYHAOAa0X7/MSS0RNAjdwoyGHeOepXOKY+h3iHeqCvgOH6LOifdHf/1aaZNwSkGotYnYScW8Yx63LnSwba7+hESrtPa/huRmB9KWvMCKbDThL/nne14hnL277EDCSocPu3rOSYjuB9gKSOdVmWsj9Dxb/iZIe+S6AiG29Esm+/eUacSba0k8wn5HhHg9d4tIcixrxveflc8vi2/wNQGVFNsGO6tB5WF0xf/plngOvQ1/ivGV/C1Qpdhzznh0ExAVJ6dwzNg7qIEBaw+BzTJTUuRcPk92Sn6QDn2Pu3mpONaEumacjW4w6ipPnPw+g2TfywJjeEcpSZaP4Q3YV5HG8D6UjWA4GSkBKculWpdCMadx0usMomsSS/74QgpYqcPkmamB4nVv1JxczYITIqItIKjD35IGKAUwAA==",
+    "client-version": "2.0.0",
+}
+
 class MainController {
     constructor() {
         !UOS_patch || session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
@@ -80,6 +87,32 @@ class MainController {
         ]},
             (details) => this.handleRequest(details)
         )
+
+        session.defaultSession.webRequest.onBeforeRequest({urls: webUrls}, (details, callback) => {
+            let url = new URL(details.url);
+            if (url.pathname === "/" && url.search.indexOf("target=t") === -1) {
+                if (url.search === "" || url.search === "?") {
+                    url.search = "?"
+                } else {
+                    url.search += "&"
+                }
+                url.search += "target=t"
+            }
+            callback({ redirectUrl: url.href })
+        })
+
+        session.defaultSession.webRequest.onBeforeSendHeaders({urls: webUrls}, (details, callback) => {
+            let url = new URL(details.url);
+            if (url.pathname === "/cgi-bin/mmwebwx-bin/webwxnewloginpage") {
+                for (var k in wechatHeaders) {
+                    details.requestHeaders.push({
+                        name: k,
+                        value: wechatHeaders[k],
+                    });
+                }
+            }
+            callback({ requestHeaders: details.requestHeaders })
+        })
 
         ipcMain.on('resizeWindow', (event, value) => {
             if (value === 'desktop') {
