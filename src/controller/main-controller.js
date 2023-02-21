@@ -104,11 +104,8 @@ class MainController {
         session.defaultSession.webRequest.onBeforeSendHeaders({urls: webUrls}, (details, callback) => {
             let url = new URL(details.url);
             if (url.pathname === "/cgi-bin/mmwebwx-bin/webwxnewloginpage") {
-                for (var k in wechatHeaders) {
-                    details.requestHeaders.push({
-                        name: k,
-                        value: wechatHeaders[k],
-                    });
+                for (const header in wechatHeaders) {
+                    details.requestHeaders[header] = wechatHeaders[header]
                 }
             }
             callback({ requestHeaders: details.requestHeaders })
